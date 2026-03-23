@@ -1,6 +1,6 @@
 # sonarBins
 
-This python module is meant to be used in conjuction with a sweeping ultrasonic module attached to a stepper motor (or any sort of module that may move to a set angle).
+This python module is meant to be used in conjuction with a sweeping ultrasonic module attached to a stepper motor (or any sort of module that may move to a set angle). It is meant to be used in a personal project, not to be deployed elsewhere.
 
 ---
 
