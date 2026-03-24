@@ -90,8 +90,8 @@ Per bin:
 abs(value - baseline) / baseline
 ```
 
-- if above `error_margin` → counts as error
-- if `error_count / total >= error_ratio` → triggers
+- if above `error_margin` -> counts as error
+- if `error_count / total >= error_ratio` -> triggers
 
 ---
 
