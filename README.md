@@ -49,13 +49,13 @@ scanner = sonarBins(
 ## Functions
 
 ### `initialize(sweeps=N)`
-Builds baseline by sweeping forward and backward.
+Builds baseline by sweeping forward and backward N times.
 
 Example:
 ```python
 scanner.initialize(sweeps=3)
 ```
-
+- uses `move()` function to read environment
 - collects readings into bins
 - stores median per bin in `self.baseline`
 
@@ -70,8 +70,8 @@ triggered = scanner.sweep()
 ```
 
 Returns:
-- `True` → alert triggered
-- `False` → no trigger
+- `True` -> alert triggered
+- `False` -> no trigger
 
 Behavior:
 - collects readings per bin during sweep
@@ -97,6 +97,6 @@ abs(value - baseline) / baseline
 
 ## Notes
 
-- `step` should be ≤ bin width (`(end-start)/bins`) or bins may be skipped
+- `step` should be <= bin width (`(end-start)/bins`) or bins may be skipped
 - baseline auto-adjusts slowly during non-triggered bins
 - this module is a fast trigger layer (not precision mapping)
