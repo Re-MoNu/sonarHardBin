@@ -6,7 +6,7 @@ def move_servo(angle):
     pass
 def read_ultrasonic():
     if scanner.current_angle > 150 and scanner.current_angle < 160:
-        return random.randint(150,200)
+        return random.randint(90,150)
     return random.randint(90,100)
 
 def on_alert(angle):
@@ -26,4 +26,5 @@ scanner = sonarBins(
 )
 
 scanner.initialize(3)
-print(scanner.sweep())
+for x in range(100):
+    print(scanner.sweep())
