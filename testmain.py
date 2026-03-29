@@ -22,9 +22,9 @@ scanner = sonarBins(
     end_angle=180,            # default
     error_margin=0.15,        # default (15% change per reading)
     error_ratio=0.6,          # default (60% of readings must fail to call alert())
+    delay=0.05,                # default (ms delay between moving and reading)
     debug=True               # default
 )
 
 scanner.initialize(3)
-for x in range(100):
-    print(scanner.sweep())
+scanner.sweep()

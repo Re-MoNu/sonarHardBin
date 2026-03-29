@@ -26,6 +26,7 @@ scanner = sonarBins(
     end_angle=180,            # default
     error_margin=0.15,        # default (15% change per reading)
     error_ratio=0.6,          # default (60% of readings must fail to call alert())
+    delay=0.05                # default (ms delay between moving and reading)
     debug=False               # default
 )
 ```
@@ -42,6 +43,7 @@ scanner = sonarBins(
 | `end_angle` | sweep end | 180 |
 | `error_margin` | per-reading % change threshold | 0.15 |
 | `error_ratio` | % of bad readings to trigger | 0.6 |
+| `delay` | delay between moving and reading | 0.05 |
 | `debug` | print debug info on trigger | False |
 
 ---

@@ -1,11 +1,15 @@
+import time
+
+
 class sonarBins:
-    def __init__(self, move, read, alert, bins=60, step=2, start_angle=0, end_angle=180, error_margin=0.15, error_ratio=0.6, debug=False):
+    def __init__(self, move, read, alert, bins=60, step=2, start_angle=0, end_angle=180, error_margin=0.15, error_ratio=0.6, delay=0.05, debug=False):
         self.move = move
         self.read = read
         self.alert = alert
         self.baseline = None
         self.bins = bins
         self.step = step
+        self.delay = delay
         
         self.direction = 1
         
@@ -43,7 +47,9 @@ class sonarBins:
             # Forward Sweep
             while angle <= self.end_angle:
                 self.move(angle)
+                time.sleep(self.delay)
                 d = self.read()
+                time.sleep(self.delay)
                 if d is not None:
                     bins[self._angle2bin(angle)].append(d)
                 angle+=self.step
@@ -52,7 +58,9 @@ class sonarBins:
             angle = self.end_angle
             while angle >= self.start_angle:
                 self.move(angle)
+                time.sleep(self.delay)
                 d = self.read()
+                time.sleep(self.delay)
                 if d is not None:
                     bins[self._angle2bin(angle)].append(d)
                 angle-=self.step
@@ -114,7 +122,9 @@ class sonarBins:
         while angle <= self.end_angle and angle >= self.start_angle:
             current_bin = self._angle2bin(angle)
             self.move(angle)
+            time.sleep(self.delay) # Small delay to allow sensor to stabilize
             d = self.read()
+            time.sleep(self.delay)
             if last_bin != current_bin:
                 if self._check_flag(sweep_bin, last_bin):
                     if self.debug:
@@ -166,6 +176,4 @@ class sonarBins:
         final_baseline = self.baseline[last_bin]*0.95 + self._median(sweep_bin)*0.05
         self.baseline[last_bin] = final_baseline
         return True
-        
-        
         
